@@ -1,11 +1,11 @@
-# 🗂️ Introdução ao Versionamento de Código
+#  Introdução ao Versionamento de Código
 
 Este documento tem como objetivo compartilhar os conceitos e comandos básicos que aprendi sobre **versionamento de código**, utilizando o **Git** e o **GitHub**.  
 A ideia é compartilhar o conhecimento adquirido de forma simples, prática e acessível, tanto pra mim quanto pra quem quiser aprender junto!
 
 ---
 
-## 🧠 O que é Versionamento de Código?
+##  O que é Versionamento de Código?
 
 Versionamento de código é uma técnica usada para **registrar todas as alterações feitas em um projeto ao longo do tempo**.  
 Com isso, é possível:
@@ -17,7 +17,7 @@ Com isso, é possível:
 
 ---
 
-## 🔧 Git vs GitHub
+##  Git vs GitHub
 
 - **Git** é o programa que a gente instala no PC pra controlar as versões do código. Funciona no terminal.
 - **GitHub** é tipo uma “nuvem” onde a gente pode guardar esses códigos e compartilhar com outras pessoas.
@@ -26,7 +26,7 @@ Com isso, é possível:
 
 ---
 
-## 🔑 Conceitos que aprendi
+##  Conceitos que aprendi
 
 - **Repositório (repo)**: local onde o projeto e seu histórico são salvos.
 - **Commit**: registro de uma mudança no código.
@@ -38,7 +38,7 @@ Com isso, é possível:
 
 ---
 
-## 💻 Comandos Básicos
+##  Comandos Básicos
 
 ```bash
 git init
