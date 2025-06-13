@@ -1,4 +1,4 @@
-#A indentação em python é muito importante, pois a partir ela que o interpretador consegue determinar onde o bloco de comando inicia e termina.
+#A indentação em python é muito importante, pois a partir dela que o interpretador consegue determinar onde o bloco de comando inicia e termina.
 
 def sacar(valor):
     saldo=500
