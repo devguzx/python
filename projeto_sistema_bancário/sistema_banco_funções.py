@@ -12,6 +12,9 @@ LIMITE_SAQUE = 500
 LIMITE_DIARIO = 3
 limite_saque_diario = 0
 
+
+
+
 def criar_conta_corrente():
     global num_conta, contas
 
@@ -42,6 +45,20 @@ CPF: {usuario_conta}
         print("Usuario não cadastrado! Se cadastre primeiro antes de fazer sua conta.")
         return
 
+def listar_contas():
+    if not contas:
+        print("\nNenhuma conta criada no momento!")
+        return
+    else:
+        for conta in contas:
+            print(f"""
+    =============== CONTAS ===============
+        Agência: {conta["agencia"]}
+        Número da conta: {conta["numero_conta"]}
+        Usuário: {conta["usuario"]["nome"]}
+        CPF: {conta["usuario"]["cpf"]}
+    ======================================
+    """)
 
 
 def cadastrar_usuario():
@@ -66,18 +83,22 @@ def cadastrar_usuario():
     "endereco": endereco
 }
     usuarios.append(usuario)
-    print("Usuario cadastrado!")
+    print("Usuário cadastrado!")
 
 def listar_usuarios():
-    for usuario in usuarios:
-        print(f"""
-=============== USUÁRIOS ===============
-     Nome: {usuario["nome"]}
-     Data de Nascimento: {usuario["data_nascimento"]}
-     CPF: {usuario["cpf"]}
-     Endereço: {usuario["endereco"]}
-===============================================
-""" )
+    if not usuarios:
+        print("Sem usúarios cadastrados.")
+        return
+    else:
+        for usuario in usuarios:
+            print(f"""
+    =============== USUÁRIOS ===============
+        Nome: {usuario["nome"]}
+        Data de Nascimento: {usuario["data_nascimento"]}
+        CPF: {usuario["cpf"]}
+        Endereço: {usuario["endereco"]}
+    ===============================================
+    """ )
 
 def menu():
     print("""
@@ -87,8 +108,9 @@ def menu():
     [3] - Extrato
     [4] - Cadastrar Usuário
     [5] - Listar Usuários
-    [6] - Criar conta corrente     
-    [7] - Sair
+    [6] - Criar conta corrente  
+    [7] - Listar Contas   
+    [8] - Sair
 ===============================================
 """)
 
@@ -170,6 +192,9 @@ while sistema_ativo:
             criar_conta_corrente()
 
         elif operacao == 7:
+            listar_contas()
+
+        elif operacao == 8:
             print("Até mais, volte logo.")
             sistema_ativo = False
         else:
