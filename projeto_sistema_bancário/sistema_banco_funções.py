@@ -1,22 +1,94 @@
-# ======== Projeto 01: Sistema Bancário Simples ========
+# Projeto 01: Sistema Bancário Simples 
 
 # Variáveis principais
 saldo = 0
 depositos = []
 saques = []
+usuarios= []
+contas=[]
+num_conta=0
 
 LIMITE_SAQUE = 500
 LIMITE_DIARIO = 3
 limite_saque_diario = 0
 
+def criar_conta_corrente():
+    global num_conta, contas
+
+    num_conta+=1
+
+    agencia="0001"
+
+    usuario_conta=input("Digite o CPF que esta vinculado ao seu cadastro: ").strip().replace(".","").replace("-","")
+
+    usuario = next((usuario for usuario in usuarios if usuario["cpf"] == usuario_conta), None)
+
+    if usuario:
+        conta={
+            "agencia":agencia,
+            "numero_conta":num_conta,
+            "usuario":usuario
+        }
+        
+        contas.append(conta)
+        print(f"""
+Conta criada com sucesso!
+Agência: {agencia}
+Número da conta: {num_conta}
+Titular: {usuario['nome']}
+CPF: {usuario_conta}
+""")
+    else:
+        print("Usuario não cadastrado! Se cadastre primeiro antes de fazer sua conta.")
+        return
+
+
+
+def cadastrar_usuario():
+    global usuarios
+    nome=str(input("Digite seu nome: ")).strip().title()
+
+    data_nascimento=input("Digite sua data de nascimento(ex:04/01/2007): ")
+
+    cpf=input("Digite seu cpf: ").strip().replace(".","").replace("-","")
+    cpf_existe = any(usuario['cpf'] == cpf for usuario in usuarios)
+
+    if cpf_existe:
+        print("CPF já cadastrado no sistema!")
+        return
+    
+    endereco = input("Digite seu endereço (Rua - Bairro - Cidade/Estado(sigla)): ").strip().replace(","," - ")
+
+    usuario = {
+    "nome": nome,
+    "data_nascimento": data_nascimento,
+    "cpf": cpf,
+    "endereco": endereco
+}
+    usuarios.append(usuario)
+    print("Usuario cadastrado!")
+
+def listar_usuarios():
+    for usuario in usuarios:
+        print(f"""
+=============== USUÁRIOS ===============
+     Nome: {usuario["nome"]}
+     Data de Nascimento: {usuario["data_nascimento"]}
+     CPF: {usuario["cpf"]}
+     Endereço: {usuario["endereco"]}
+===============================================
+""" )
 
 def menu():
     print("""
 =============== SISTEMA BANCÁRIO ===============
-    1 - Depositar
-    2 - Sacar
-    3 - Extrato
-    4 - Sair
+    [1] - Depositar
+    [2] - Sacar
+    [3] - Extrato
+    [4] - Cadastrar Usuário
+    [5] - Listar Usuários
+    [6] - Criar conta corrente     
+    [7] - Sair
 ===============================================
 """)
 
@@ -72,19 +144,35 @@ def extrato():
     print("======================\n")
 
 
-while True:
-    menu()
+sistema_ativo=True
+while sistema_ativo:
+    try:
+        menu()
 
-    operacao = int(input("Digite o número da operação: "))
+        operacao = int(input("Digite o número da operação: "))
 
-    if operacao == 1:
-        depositar()
-    elif operacao == 2:
-        sacar()
-    elif operacao == 3:
-        extrato()
-    elif operacao == 4:
-        print("Até mais, volte logo.")
-        break
-    else:
-        print("Operação inválida, por favor escolha uma operação válida.")
+        if operacao == 1:
+            depositar()
+
+        elif operacao == 2:
+            sacar()
+
+        elif operacao == 3:
+            extrato()
+
+        elif operacao == 4:
+            cadastrar_usuario()
+
+        elif operacao == 5:
+            listar_usuarios()
+
+        elif operacao == 6:
+            criar_conta_corrente()
+
+        elif operacao == 7:
+            print("Até mais, volte logo.")
+            sistema_ativo = False
+        else:
+            print("Operação inválida, por favor escolha uma operação válida.")
+    except ValueError:
+        print("Entrada Inválida")
