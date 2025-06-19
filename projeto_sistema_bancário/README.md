@@ -1,32 +1,71 @@
-# Sistema Bancário Simples
+# 🏦 Sistema Bancário Simples
 
-## Descrição
+## 📄 Descrição
 
-Este é um projeto desenvolvido em Python com o objetivo de simular um sistema bancário básico. O programa permite ao usuário realizar operações como **depósito**, **saque** e **consultar extrato**, com regras simples de negócio, como limite de saque por operação e por dia.
+Este projeto foi desenvolvido em **Python**, com o objetivo de simular um **sistema bancário básico**, capaz de realizar operações comuns como **depósitos, saques, extrato, cadastro de usuários, criação de contas correntes e listagem de contas e usuários**.
 
-O projeto foi desenvolvido inicialmente de forma procedural e posteriormente refatorado utilizando funções, visando melhorar a organização, a legibilidade e a manutenção do código.
+O código foi desenvolvido inicialmente de forma procedural e posteriormente refatorado utilizando funções, tornando-o mais organizado, legível e fácil de manter.
 
 ---
 
-## Funcionalidades
+##  Funcionalidades
 
-- ✅ Depósito de valores (apenas valores positivos).
-- ✅ Saque de valores com as seguintes restrições:
-  - Limite de **R$ 500,00** por saque.
-  - Máximo de **3 saques diários**.
+- ✅ **Depósito de valores**
+  - Permite realizar depósitos de valores positivos.
+
+- ✅ **Saque de valores**
+  - Limite de **R$ 500,00 por saque**.
+  - Máximo de **3 saques diários** por conta.
   - Não permite saque superior ao saldo disponível.
-- ✅ Consulta de extrato:
+
+- ✅ **Consulta de extrato**
   - Lista todos os depósitos e saques realizados.
-  - Exibe o saldo atual.
-- ✅ Encerramento da operação (**Sair do sistema**).
+  - Exibe o saldo atual da conta.
+
+- ✅ **Cadastro de Usuários**
+  - Armazena informações como: nome, CPF (chave única), data de nascimento e endereço.
+  - Garante que não haja duplicidade de usuários por CPF.
+
+- ✅ **Criação de Contas Correntes**
+  - Cada conta possui uma agência fixa (padrão `0001`) e um número único.
+  - A conta é associada a um CPF de um usuário previamente cadastrado.
+
+- ✅ **Listagem de Usuários**
+  - Exibe todos os usuários cadastrados no sistema.
+
+- ✅ **Listagem de Contas**
+  - Mostra as contas criadas, informando agência, número da conta e dados do titular.
+
+- ✅ **Encerramento da operação**
+  - Opção para encerrar o sistema de forma segura.
 
 ---
 
-## Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
-- **Python 3**
+-  **Python 3** (linguagem principal)
 
-## Observações
+---
 
-- Este projeto foi desenvolvido com foco em prática de lógica de programação, controle de fluxo, uso de funções e organização de código.
-- As operações não persistem os dados. Ao encerrar o programa, todos os dados são perdidos, pois não há integração com banco de dados ou arquivos externos.
+##  Regras de Negócio
+
+- Cada CPF pode ter **uma ou mais contas correntes** associadas.
+- Um usuário deve estar previamente cadastrado para criar uma conta.
+- O **CPF é a chave única** de identificação dos usuários.
+- As movimentações financeiras (depósitos e saques) são registradas e exibidas no extrato.
+- As operações são **temporárias**, sem persistência de dados em banco de dados ou arquivos externos. Ao encerrar o programa, os dados são perdidos.
+
+---
+
+##  Observações
+
+- Este projeto foi desenvolvido com foco no aprimoramento das seguintes habilidades:
+  - 🧠 **Lógica de Programação**
+  - 🔁 **Controle de Fluxo**
+  - 🏗️ **Estruturação com Funções**
+  - 🔍 **Validação de Dados e Regras de Negócio**
+- É uma simulação educacional, sem persistência de dados.
+
+---
+
+
