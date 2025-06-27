@@ -1,0 +1,1 @@
+#Interfaces: definem o que uma classe deve fazer e não como. É uma classe abstrata que só tem métodos abstratos.(python não possui o conceito formal de "interface")
