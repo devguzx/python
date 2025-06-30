@@ -2,6 +2,8 @@
 
 #Um decorador serve para adicionar ou modificar o comportamneto de uma função ou método, sem alterar seu código original.
 
+#Utilidades: logs, autenticação, temporização.
+
 #Exemplo: 
 def meu_decorador(funcao):
     def nova_funcao():

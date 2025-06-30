@@ -1,4 +1,4 @@
-#Geradores: Tpio especial de função que mantém o estado da execução entre as chamadas. Ele produz valores sob demanda com a palavra chave "yield".
+#Geradores: Tipo especial de função que mantém o estado da execução entre as chamadas. Ele produz valores sob demanda com a palavra chave "yield".
 
 #Eles economizam memória porque não armazenam todos os valores em memória de uma vez, ao contrário de listas.
 
@@ -6,6 +6,8 @@
 #1- Se um item gerado é consumido, ele é esquecido e não pode ser acessado novamente.
 #2- O estado interno é mantido entre chamadas
 #3- A execução é pausada na declaração "yield" e retomada na próxima vez que le for chamado.
+
+#Diferença para return: -Return: encerra a função. -yield: pausa a função e lembra de onde parou na próxima chamada.
 
 #Exemplo: 
 def gerador_exemplo():
