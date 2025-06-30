@@ -1,5 +1,38 @@
 # Projeto 01: Sistema Bancário Simples 
 
+#Iterador para listar contas
+class ContaIterador:
+    def __init__(self,lista):
+        self.atual=0
+        self.lista=lista
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.atual<len(self.lista):
+            dados_conta=self.lista[self.atual]
+            self.atual+=1
+            return dados_conta
+        else:
+            raise StopIteration
+
+#Decorador de logs
+import datetime 
+def log_transacoes(funcao):
+    def wrapper(*args, **kwargs):
+        agora=datetime.datetime.now()
+        agora_formatado = agora.strftime("%d/%m/%Y %H:%M:%S")
+        resultado=funcao(*args, **kwargs)
+        print(f"""    
+        =============== Log Transações ===============
+        Data e hora: {agora_formatado}
+        Tipo de Transação: {funcao.__name__.title()}  
+        ============================================== 
+              """)
+        return resultado
+    return wrapper
+
 # Variáveis principais
 saldo = 0
 depositos = []
@@ -8,13 +41,14 @@ usuarios= []
 contas=[]
 num_conta=0
 
+
 LIMITE_SAQUE = 500
 LIMITE_DIARIO = 3
 limite_saque_diario = 0
 
 
 
-
+@log_transacoes
 def criar_conta_corrente():
     global num_conta, contas
 
@@ -30,7 +64,7 @@ def criar_conta_corrente():
         conta={
             "agencia":agencia,
             "numero_conta":num_conta,
-            "usuario":usuario
+            "usuario":usuario 
         }
         
         contas.append(conta)
@@ -45,12 +79,13 @@ CPF: {usuario_conta}
         print("Usuario não cadastrado! Se cadastre primeiro antes de fazer sua conta.")
         return
 
+
 def listar_contas():
     if not contas:
         print("\nNenhuma conta criada no momento!")
         return
     else:
-        for conta in contas:
+        for conta in ContaIterador(contas):
             print(f"""
     =============== CONTAS ===============
         Agência: {conta["agencia"]}
@@ -60,7 +95,7 @@ def listar_contas():
     ======================================
     """)
 
-
+@log_transacoes
 def cadastrar_usuario():
     global usuarios
     nome=str(input("Digite seu nome: ")).strip().title()
@@ -76,11 +111,12 @@ def cadastrar_usuario():
     
     endereco = input("Digite seu endereço (Rua - Bairro - Cidade/Estado(sigla)): ").strip().replace(","," - ")
 
+
     usuario = {
     "nome": nome,
     "data_nascimento": data_nascimento,
     "cpf": cpf,
-    "endereco": endereco
+    "endereco": endereco,
 }
     usuarios.append(usuario)
     print("Usuário cadastrado!")
@@ -114,7 +150,7 @@ def menu():
 ===============================================
 """)
 
-
+@log_transacoes
 def depositar():
     global saldo, depositos
     deposito = float(input("Qual valor deseja depositar? "))
@@ -127,7 +163,7 @@ def depositar():
         print(f"Depósito de {deposito} reais realizado com sucesso!")
         print(f"Seu saldo: {saldo}")
 
-
+@log_transacoes
 def sacar():
     global saldo, saques, limite_saque_diario
     saque = float(input("Qual valor deseja sacar? "))
@@ -147,7 +183,6 @@ def sacar():
         print(f"Saque de {saque} reais realizado com sucesso!")
         print(f"Seu saldo: {saldo}")
 
-
 def extrato():
     print("====== EXTRATO ======")
     if not depositos:
@@ -164,7 +199,6 @@ def extrato():
 
     print(f"Saldo atual: R$ {saldo:.2f}")
     print("======================\n")
-
 
 sistema_ativo=True
 while sistema_ativo:
