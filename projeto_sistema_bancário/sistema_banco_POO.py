@@ -169,8 +169,6 @@ cliente.realizar_transacao(conta, Deposito(1000))
 cliente.realizar_transacao(conta, Saque(200))      
 cliente.realizar_transacao(conta, Saque(600))
 
-    
-        
         
 
 
